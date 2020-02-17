@@ -68,11 +68,11 @@ if(isset($_POST['btnEdit'])){
 			log_activity_into_file("Admin " . $_SESSION['user']->username . " updated user ". $_POST['username'] . "\t", '../app/logs/db.log');
         }else {
 			$msg = "An error occured";
-			log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log")
+			log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log");
         }
     }catch(PDOException $e){
 		$msg = $e->getMessage();
-		log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log")
+		log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log");
 		
     }
 }

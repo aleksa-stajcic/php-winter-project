@@ -24,11 +24,11 @@ if(isset($_POST['id'])){
 			log_activity_into_file("Admin " . $_SESSION['user']->username . " deleted user ". $_POST['username'] . "\t", '../app/logs/db.log');
         }else{
 			$status_code = 500;
-			log_error_into_file("Admin " . $_SESSION['user']->username . " tried to delete user ". $_POST['username'] . ", an error occured.\t", $status_code, "../app/logs/db_errors.log")
+			log_error_into_file("Admin " . $_SESSION['user']->username . " tried to delete user ". $_POST['username'] . ", an error occured.\t", $status_code, "../app/logs/db_errors.log");
         }
     }catch(PDOException $e){
 		$status_code = 500;
-		log_error_into_file("Admin " . $_SESSION['user']->username . " tried to delete user ". $_POST['username'] . ", an error occured.\t", $status_code, "../app/logs/db_errors.log")
+		log_error_into_file("Admin " . $_SESSION['user']->username . " tried to delete user ". $_POST['username'] . ", an error occured.\t", $status_code, "../app/logs/db_errors.log");
 		
     }
 }
