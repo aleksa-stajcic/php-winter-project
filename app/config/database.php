@@ -5,4 +5,4 @@ define("DATABASE", "winter-php");
 define("USERNAME", "root");
 define("PASSWORD", "");
 
-define("SELF", "http://localhost/winter-php2");
+define("SELF", "http://localhost/php-winter-project");

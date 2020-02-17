@@ -59,7 +59,7 @@
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="?page=contact">Contact</a>
+                                    <a class="nav-link" href="?page=author">Author</a>
                                 </li>
 								<?php if(isset($_SESSION['user'])): ?>
 								<li class="nav-item">
