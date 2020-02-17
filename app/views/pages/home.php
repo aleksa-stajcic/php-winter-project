@@ -1,3 +1,10 @@
+<?php
+
+$category = $db->execute_select_one("SELECT * FROM categories");
+$brand = $db->execute_select_one("SELECT * FROM brands");
+
+?>
+
 <!-- feature_part start-->
 <section class="feature_part pt-4">
 	<div class="container-fluid p-lg-0 overflow-hidden">
@@ -6,7 +13,7 @@
 				<div class="single_feature_post_text">
 					<img src="app/assets/img/feature_1.png" alt="#">
 					<div class="hover_text">
-						<a href="single-product.html" class="btn_2">shop for male</a>
+						<a href="<?= SELF ?>?page=products&c=<?= $category->id ?>" class="btn_2">All <?= $category->name ?></a>
 					</div>
 				</div>
 			</div>
@@ -14,7 +21,7 @@
 				<div class="single_feature_post_text">
 					<img src="app/assets/img/feature_2.png" alt="#">
 					<div class="hover_text">
-						<a href="single-product.html" class="btn_2">shop for male</a>
+						<a href="<?= SELF ?>?page=products&b=<?= $brand->id ?>" class="btn_2"><?= $brand->name ?> Products</a>
 					</div>
 				</div>
 			</div>
@@ -22,7 +29,7 @@
 				<div class="single_feature_post_text">
 					<img src="app/assets/img/feature_3.png" alt="#">
 					<div class="hover_text">
-						<a href="single-product.html" class="btn_2">shop for male</a>
+						<a href="<?= SELF ?>?page=products" class="btn_2">All products</a>
 					</div>
 				</div>
 			</div>

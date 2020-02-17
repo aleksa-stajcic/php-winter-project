@@ -27,6 +27,7 @@ class DB {
 	public function execute_select_one($query, $params = [])
 	{
 		$prepare = $this->conn->prepare($query);
+		
 		$prepare->execute($params);
 		return $prepare->fetch();
 	}
