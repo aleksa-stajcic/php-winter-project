@@ -4,7 +4,6 @@
             <div class="row justify-content-between">
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
-					
                         <h4>Category</h4>
                         <ul class="list-unstyled">
 						<?php 
@@ -18,45 +17,15 @@
                 </div>
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
-                        <h4>Company</h4>
+                        <h4>Brands</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">About</a></li>
-                            <li><a href="">News</a></li>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">Contact</a></li>
+						<?php 
+							$brands = $db->execute_query("SELECT * FROM brands");
+							foreach ($brands as $b):
+						?>
+                            <li><a href="<?= SELF ?>/?page=products&c=<?= $b->id ?>"><?= $b->name ?></a></li>
+						<?php endforeach; ?>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_footer_part">
-                        <h4>Address</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">200, Green block, NewYork</a></li>
-                            <li><a href="#">+10 456 267 1678</a></li>
-                            <li><span>contact89@winter.com</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="single_footer_part">
-                        <h4>Newsletter</h4>
-                        <div id="mc_embed_signup">
-                            <form target="_blank"
-                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                method="get" class="subscribe_form relative mail_part">
-                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '">
-                                <button type="submit" name="submit" id="newsletter-submit"
-                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                <div class="mt-10 info"></div>
-                            </form>
-                        </div>
-                        <div class="social_icon">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-instagram"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
