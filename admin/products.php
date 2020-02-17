@@ -29,7 +29,7 @@ switch($page){
     default:
         $brojac = $db->execute_select_one("SELECT COUNT(*) as broj FROM products");
 
-        $per_page = 5;
+        $per_page = 4;
         $number_of_links = ceil($brojac->broj/$per_page);
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$from = $per_page * ($page - 1);

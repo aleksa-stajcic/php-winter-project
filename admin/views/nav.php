@@ -4,7 +4,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-11">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="<?= SELF ?>" > <img src="../app/assets/img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="http://localhost/php-winter-project" > <img src="../app/assets/img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>">Home</a>
+                                    <a class="nav-link" href="http://localhost/php-winter-project">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
@@ -22,7 +22,7 @@
                                         Shop
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="<?= SELF ?>?page=products"> shop category</a>
+                                        <a class="dropdown-item" href="http://localhost/php-winter-project?page=products"> shop category</a>
                                         <a class="dropdown-item" href="single-product.html">product details</a>
                                         
                                     </div>
@@ -34,8 +34,8 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 									<?php if(!isset($_SESSION['user'])): ?>
-                                        <a class="dropdown-item" href="<?= SELF ?>/login.php">login</a>
-                                        <a class="dropdown-item" href="<?= SELF ?>?page=register">Register</a>
+                                        <a class="dropdown-item" href="http://localhost/php-winter-project/login.php">login</a>
+                                        <a class="dropdown-item" href="http://localhost/php-winter-project?page=register">Register</a>
 									<?php endif; ?>
                                         <a class="dropdown-item" href="checkout.html">product checkout</a>
                                         <a class="dropdown-item" href="cart.html">shopping cart</a>
@@ -60,7 +60,7 @@
                                 </li>
 								<?php if(isset($_SESSION['user'])): ?>
 								<li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>/logout.php">Logout (<?= $_SESSION['user']->username ?>)</a>
+                                    <a class="nav-link" href="http://localhost/php-winter-project/logout.php">Logout (<?= $_SESSION['user']->username ?>)</a>
                                 </li>
 								<?php endif; ?>
                             </ul>

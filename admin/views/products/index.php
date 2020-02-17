@@ -8,8 +8,11 @@
         <li class="breadcrumb-item active">Products</li>
       </ol>
     <div id="larry">
+		<br/>
         <a href="products.php?page=new" class="btn btn-xs btn-success insert-product">Insert</a>
+		<br/>
         <table class="table table-hover table-bordered table-striped"  id="tblSelect">
+		<br/>
             <tr>
                 <th>Name</th>
                 <th>Manufacturer</th>
@@ -25,7 +28,7 @@
                 <td><?= $p->man_name ?></td>
                 <td><?= $p->descr ?></td>
                 <td><?= $p->price ?></td>
-                <td><img height="300px" src="../app/assets/<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width=""></td>
+                <td><img height="250px" src="../app/assets/<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width=""></td>
                 <td><?= $p->cat_name ?></td>
                 <td><a href="#" class="btn btn-xs btn-danger delete-product" data-id="<?= $p->id ?>">Delete</a></td>
             </tr>
@@ -34,7 +37,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                <a class="page-link" href="products.php?page=<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number-1 == 0 ? 1 : $number-1  ?>" aria-label="Previous">
+                <a class="page-link" href="products.php?page=<?= $page-1 == 0 ? 1 : $page-1  ?>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
                 </li>
@@ -42,11 +45,13 @@
                     <li class="page-item"><a class="page-link" href="products.php?page=<?= $i+1?>"><?= $i+1 ?></a></li>
                 <?php endfor ?>
                 <li class="page-item">
-                <a class="page-link" href="products.php?page=<?= $number_of_links ?>" aria-label="Next">
+                <a class="page-link" href="products.php?page=<?= $page+1 > $number_of_links ? $page : $page+1 ?>" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
                 </li>
             </ul>
         </nav>
+		<br>
+		<br><br>
     </div>
 </div>

@@ -25,7 +25,7 @@
 		}
 	}
 
-	$per_page = 1;
+	$per_page = 6;
 	$number_of_links = ceil($brojac->broj/$per_page);
 	$number = isset($_GET['number']) ? $_GET['number'] : 1;
 	$from = $per_page * ($number - 1);
@@ -207,7 +207,7 @@
 							<?php endfor; ?>
 							
 							<li class="page-item">
-							<a class="page-link" href="index.php?page=products<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number_of_links ?>" aria-label="Next">
+							<a class="page-link" href="index.php?page=products<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number+1 > $number_of_links ? $number : $number+1 ?>" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 								<span class="sr-only">Next</span>
 							</a>
