@@ -22,7 +22,7 @@
                                         Shop
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="<?= SELF ?>/products"> shop category</a>
+                                        <a class="dropdown-item" href="<?= SELF ?>?page=products"> shop category</a>
                                         <a class="dropdown-item" href="single-product.html">product details</a>
                                         
                                     </div>
@@ -34,11 +34,11 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 									<?php if(!isset($_SESSION['user'])): ?>
-                                        <a class="dropdown-item" href="<?= SELF ?>/login"> 
+                                        <a class="dropdown-item" href="<?= SELF ?>?page=login"> 
                                             login
                                             
                                         </a>
-                                        <a class="dropdown-item" href="<?= SELF ?>/register">Register</a>
+                                        <a class="dropdown-item" href="<?= SELF ?>?page=register">Register</a>
 									<?php endif; ?>
                                         <a class="dropdown-item" href="checkout.html">product checkout</a>
                                         <a class="dropdown-item" href="cart.html">shopping cart</a>
@@ -63,7 +63,7 @@
                                 </li>
 								<?php if(isset($_SESSION['user'])): ?>
 								<li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>/logout">Logout</a>
+                                    <a class="nav-link" href="<?= SELF ?>/logout.php">Logout</a>
                                 </li>
 								<?php endif; ?>
                             </ul>
