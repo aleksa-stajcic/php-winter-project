@@ -19,12 +19,16 @@ if (isset($_SESSION['user'])) {
 
 	
 	try {
-		$user = $db->execute_select_one('SELECT * FROM users WHERE username = ? AND password = ?', [$username, $password]);
+		$user = $db->execute_select_one('SELECT u.username, u.email, r.name as role FROM users as u JOIN roles as r ON u.role_id = r.id WHERE username = ? AND password = ?', [$username, $password]);
 
 		if($user){
 			$_SESSION['user'] = $user;
-		header("Location: " . SELF);
-
+			var_dump($user);
+			// if($user->role == 'admin'){
+                    header("Location: http://localhost/php-winter-project/app/admin/index.php");
+            //     }else{
+            //         header("Location: " . SELF);
+            //     }
 		}else{
 			http_response_code(404);
 			$msg = "User doesnt exist.";

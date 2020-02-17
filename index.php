@@ -18,7 +18,7 @@ if (isset($_GET['page'])) {
 			include "app/views/pages/home.php";
 		break;
 		case 'register':
-			if(isset($_SESSION['korisnik'])){
+			if(isset($_SESSION['user'])){
 				include "app/views/pages/home.php";
 			}else{
 				include "app/views/pages/register.php";
