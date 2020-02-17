@@ -20,20 +20,17 @@ if (isset($_SESSION['user'])) {
 		$user = $db->execute_select_one('SELECT * FROM users WHERE username = ? AND password = ?', [$username, $password]);
 
 		if($user){
-			// $msg = "Successfully logged in";
 			$_SESSION['user'] = $user;
 
 		}else{
 			http_response_code(404);
 			$msg = "User doesnt exist.";
 		}
-
 	} catch (\PDOException $ex) {
 		$msg = $ex->getMessage();
 	}
 }
 }
-
 
 include "app/views/shared/head.php";
 include "app/views/shared/nav.php";
