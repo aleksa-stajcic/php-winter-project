@@ -1,13 +1,23 @@
 <?php
+	if(isset($_GET['c'])){
+		$products = $db->execute_param_query('SELECT * FROM products as p WHERE p.category_id = ?', [$_GET['c']]);
+	}else{
+		$products = $db->execute_query('SELECT * FROM products');
+	}
+
+	$categories = $db->execute_query('SELECT * FROM categories');
+	$brands = $db->execute_query('SELECT * FROM brands');
+
 	if (isset($_GET['c'])) {
 		$x = $_GET['c'];
 		$category = null;
-		foreach ($data['categories'] as $c) {
+		foreach ($categories as $c) {
 			$category = $c->id == $_GET['c'] ? $c->name : null;
 			if($category)
 				break;
 		}
 	}
+
 ?>
 
 <!--================Category Product Area =================-->
@@ -23,10 +33,10 @@
                             <div class="widgets_inner">
                                 <ul class="list">
 								<?php 
-									foreach ($data['categories'] as $c):
+									foreach ($categories as $c):
 								?>
                                     <li>
-                                        <a href="?c=<?= $c->id ?>"><?= $c->name ?></a>
+                                        <a href="index.php?page=products&c=<?=  $c->id ?>"><?= $c->name ?></a>
                                     </li>
 								<?php
 									endforeach;
@@ -43,7 +53,7 @@
                                 <ul class="list">
                                     <p>Brands</p>
                                     <?php 
-									foreach ($data['brands'] as $b):
+									foreach ($brands as $b):
 								?>
                                     <li>
                                         <input type="radio" name="rbnBrands" aria-label="Radio button for following text input">
@@ -114,7 +124,7 @@
 												echo "Products";
 											}
 										?>
-									(<?= count($data['products']) ?>)</h2>
+									(<?= count($products) ?>)</h2>
                                 </div>
                                 <div class="product_top_bar_iner product_bar_item d-flex">
                                     <div class="product_bar_single">
@@ -137,7 +147,7 @@
                         </div>
 						<?php
 
-						foreach ($data['products'] as $p):
+						foreach ($products as $p):
 
 						?>
 						<!-- Single product -->
@@ -152,7 +162,7 @@
                                         </ul>
                                     </div>
                                     <div class="category_product_text">
-                                        <a href="<?= SELF ?>/products/?id=<?= $p->id ?>"><h5><?= $p->name ?></h5></a>
+                                        <a href="<?= SELF ?>/product.php?id=<?= $p->id ?>"><h5><?= $p->name ?></h5></a>
                                         <p>$<?= $p->price ?></p>
                                     </div>
                                 </div>
