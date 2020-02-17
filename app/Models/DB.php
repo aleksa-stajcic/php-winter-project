@@ -38,4 +38,11 @@ class DB {
 		$prepare->execute($info);
 		return $prepare;
 	}
+
+	public function execute_update($query, $params)
+	{
+		$prepare = $this->conn->prepare($query);
+		$prepare->execute($params);
+		return $prepare;
+	}
 }

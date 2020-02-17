@@ -4,11 +4,11 @@ session_start();
 
 require_once "../app/config/database.php";
 
-if(!isset($_SESSION['korisnik'])){
+if(!isset($_SESSION['user'])){
     header("Location: " . SELF);
 }
 
-if($_SESSION['korisnik']->role_name != 'admin'){
+if($_SESSION['user']->role != 'admin'){
     header("Location: " . SELF);
 }
 

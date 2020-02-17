@@ -2,15 +2,17 @@
 
 session_start();
 
-include "../app/config/database.php";
 
-if(!isset($_SESSION['korisnik'])){
+
+if(!isset($_SESSION['user'])){
     header("Location: " . SELF);
 }
 
-if($_SESSION['korisnik']->role_name != 'admin'){
+if($_SESSION['user']->role_name != 'admin'){
     header("Location: " . SELF);
 }
+include "../../app/config/database.php";
+include "../../app/Models/DB.php";
 
 include "../views/header.php";
 include "../views/nav.php";
