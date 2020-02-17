@@ -4,6 +4,8 @@ if(!isset($_GET['id'])){
     header("Location: index.php");
 }
 
+require_once "../app/config/log_functions.php";
+
 $id = $_GET['id'];
 
 $query = "SELECT u.role_id,
@@ -63,11 +65,15 @@ if(isset($_POST['btnEdit'])){
 				]);
         if($edit){
 			$msg = "User updated.";
+			log_activity_into_file("Admin " . $_SESSION['user']->username . " updated user ". $_POST['username'] . "\t", '../app/logs/db.log');
         }else {
 			$msg = "An error occured";
+			log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log")
         }
     }catch(PDOException $e){
-        $msg = $e->getMessage();
+		$msg = $e->getMessage();
+		log_error_into_file("Admin " . $_SESSION['user']->username . " tried to update user ". $_POST['username'] . ", an error occured.\t", 422, "../app/logs/db_errors.log")
+		
     }
 }
 
