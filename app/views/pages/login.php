@@ -8,7 +8,7 @@
                             <h2>New to our Shop?</h2>
                             <p>There are advances being made in science and technology
                                 everyday, and a good example of this is the</p>
-                            <a href="<?= SELF ?>/register.php" class="btn_3">Create an Account</a>
+                            <a href="<?= SELF ?>/?page=register" class="btn_3">Create an Account</a>
                         </div>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                                     <a class="lost_pass" href="#">forget password?</a>
                                 </div>
                             </form>
-							<?php if(isset($data['login_error'])): ?>
-								<p><?= $data['login_error'] ?></p>
+							<?php if(isset($msg)): ?>
+								<p><?= $msg ?></p>
 							<?php endif; ?>
-							<div id="error-msg"></div>
+							<!-- <div id="error-msg"></div> -->
                         </div>
                     </div>
                 </div>

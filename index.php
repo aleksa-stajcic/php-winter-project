@@ -15,7 +15,11 @@ include "app/views/shared/nav.php";
 
 switch ($page) {
 	case 'register':
-		include "app/views/pages/register.php";
+		if(isset($_SESSION['korisnik'])){
+			include "app/views/pages/home.php";
+		}else{
+			include "app/views/pages/register.php";
+		}
 	break;
 	case 'products':
 		include "app/views/pages/products.php";

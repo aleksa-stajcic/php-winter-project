@@ -1,3 +1,7 @@
+<?php
+	
+?>
+
 <!--================login_part Area =================-->
 <section class="login_part section_padding">
 	<div class="container">
@@ -26,7 +30,7 @@
 								</button>
 							</div>
 						</form>
-						<div id="err-msg"></div>
+						<div id="err-msg" class=""></div>
 					</div>
 				</div>
 			</div>

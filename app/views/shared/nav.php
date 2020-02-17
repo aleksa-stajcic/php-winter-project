@@ -60,7 +60,7 @@
                                 </li>
 								<?php if(isset($_SESSION['user'])): ?>
 								<li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>/logout.php">Logout</a>
+                                    <a class="nav-link" href="<?= SELF ?>/logout.php">Logout (<?= $_SESSION['user']->username ?>)</a>
                                 </li>
 								<?php endif; ?>
                             </ul>
