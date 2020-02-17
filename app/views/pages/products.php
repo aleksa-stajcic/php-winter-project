@@ -1,9 +1,13 @@
 <?php
 	if(isset($_GET['c'])){
-		$products = $db->execute_param_query('SELECT * FROM products as p WHERE p.category_id = ?', [$_GET['c']]);
+		$brojac = $db->execute_select_one('SELECT COUNT(*) as broj FROM products as p WHERE p.category_id = ?', [$_GET['c']]);
 	}else{
-		$products = $db->execute_query('SELECT * FROM products');
+		$brojac = $db->execute_select_one('SELECT COUNT(*) as broj FROM products');
 	}
+
+	// $brojac = count($products);
+	// var_dump($brojac);
+	
 
 	$categories = $db->execute_query('SELECT * FROM categories');
 	$brands = $db->execute_query('SELECT * FROM brands');
@@ -11,13 +15,26 @@
 	if (isset($_GET['c'])) {
 		$x = $_GET['c'];
 		$category = null;
+		$c_id = null;
 		foreach ($categories as $c) {
 			$category = $c->id == $_GET['c'] ? $c->name : null;
-			if($category)
+			if($category){
+				$c_id = $c->id;
 				break;
+			}
 		}
 	}
 
+	$per_page = 1;
+	$number_of_links = ceil($brojac->broj/$per_page);
+	$number = isset($_GET['number']) ? $_GET['number'] : 1;
+	$from = $per_page * ($number - 1);
+
+	if(isset($_GET['c'])){
+		$products = $db->execute_param_query('SELECT * FROM products as p WHERE p.category_id = ? LIMIT ' . $from . ', ' . $per_page, [$_GET['c']]);
+	}else{
+		$products = $db->execute_query('SELECT * FROM products LIMIT ' . $from . ', ' . $per_page);
+	}
 ?>
 
 <!--================Category Product Area =================-->
@@ -174,10 +191,29 @@
 						endforeach;
 						?>
 
-                        <div class="col-lg-12 text-center">
-                            <a href="#" class="btn_2">More Items</a>
-                        </div>
+                        
+						
                     </div>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item">
+							<a class="page-link" href="index.php?page=products<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number-1 == 0 ? 1 : $number-1  ?>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+							</li>
+							<?php for($i = 0; $i < $number_of_links; $i++): ?>
+								<li class="page-item"><a class="page-link" href="index.php?page=products<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $i+1?>"><?= $i+1 ?></a></li>
+							<?php endfor; ?>
+							
+							<li class="page-item">
+							<a class="page-link" href="index.php?page=products<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number_of_links ?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+							</li>
+						</ul>
+					</nav>
                 </div>
             </div>
         </div>

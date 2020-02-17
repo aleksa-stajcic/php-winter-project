@@ -19,11 +19,12 @@ class DB {
 	public function execute_param_query($query, $params)
 	{
 		$prepare = $this->conn->prepare($query);
+		// return $prepare;
 		$prepare->execute($params);
 		return $prepare->fetchAll();
 	}
 
-	public function execute_select_one($query, $params)
+	public function execute_select_one($query, $params = [])
 	{
 		$prepare = $this->conn->prepare($query);
 		$prepare->execute($params);

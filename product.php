@@ -13,8 +13,8 @@
 	include "app/views/shared/nav.php";
 
 	// $product = $db->execute_param_query('SELECT p.*, c.name as category_name
-											// FROM products as p JOIN categories as c 
-											// ON p.category_id = c.id WHERE p.id = ?', [$id])[0];
+	// 										FROM products as p JOIN categories as c 
+	// 										ON p.category_id = c.id WHERE p.id = ?', [$id])[0];
 	
 	$product = $db->execute_select_one('SELECT p.*, c.name as category_name 
 											FROM products as p JOIN categories as c 
