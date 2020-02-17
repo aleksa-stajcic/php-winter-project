@@ -23,6 +23,13 @@ class DB {
 		return $prepare->fetchAll();
 	}
 
+	public function execute_select_one($query, $params)
+	{
+		$prepare = $this->conn->prepare($query);
+		$prepare->execute($params);
+		return $prepare->fetch();
+	}
+
 	public function execute_insert($query, $info)
 	{
 		# provera ako vec ima i vracanje koda

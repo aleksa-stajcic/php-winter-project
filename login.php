@@ -1,3 +1,45 @@
+<?php 
+
+session_start();
+require_once "app/config/database.php";
+require_once "app/Models/DB.php";
+$db = new DB();
+
+http_response_code(200);
+
+if (isset($_SESSION['user'])) {
+	header("Location: " . SELF);
+} else {
+	if (isset($_POST['btnLogin'])) {
+	$username = $_POST['username'];
+	$password = md5($_POST['password']);
+
+	$msg = "";
+	
+	try {
+		$user = $db->execute_select_one('SELECT * FROM users WHERE username = ? AND password = ?', [$username, $password]);
+
+		if($user){
+			// $msg = "Successfully logged in";
+			$_SESSION['user'] = $user;
+
+		}else{
+			http_response_code(404);
+			$msg = "User doesnt exist.";
+		}
+
+	} catch (\PDOException $ex) {
+		$msg = $ex->getMessage();
+	}
+}
+}
+
+
+include "app/views/shared/head.php";
+include "app/views/shared/nav.php";
+
+?>
+
 <!--================login_part Area =================-->
     <section class="login_part section_padding">
         <div class="container">
@@ -33,10 +75,10 @@
                                     <a class="lost_pass" href="#">forget password?</a>
                                 </div>
                             </form>
-							<?php if(isset($data['login_error'])): ?>
-								<p><?= $data['login_error'] ?></p>
+							<?php if(isset($msg)): ?>
+								<p><?= $msg ?></p>
 							<?php endif; ?>
-							<div id="error-msg"></div>
+							<!-- <div id="error-msg"></div> -->
                         </div>
                     </div>
                 </div>
@@ -44,3 +86,5 @@
         </div>
     </section>
     <!--================login_part end =================-->
+
+<?php include "app/views/shared/footer.php";

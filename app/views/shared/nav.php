@@ -34,7 +34,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 									<?php if(!isset($_SESSION['user'])): ?>
-                                        <a class="dropdown-item" href="<?= SELF ?>?page=login"> 
+                                        <a class="dropdown-item" href="<?= SELF ?>/login.php"> 
                                             login
                                             
                                         </a>

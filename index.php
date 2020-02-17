@@ -1,4 +1,5 @@
 <?php
+	session_start();
 
 require_once "app/config/database.php";
 require_once "app/Models/DB.php";
@@ -13,9 +14,6 @@ include "app/views/shared/head.php";
 include "app/views/shared/nav.php";
 
 switch ($page) {
-	case 'login':
-		include "app/views/pages/login.php";
-	break;
 	case 'register':
 		include "app/views/pages/register.php";
 	break;
