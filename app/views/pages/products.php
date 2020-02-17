@@ -4,7 +4,11 @@
 	}else{
 		$brojac = $db->execute_select_one('SELECT COUNT(*) as broj FROM products');
 	}
-
+	if(isset($_GET['b'])){
+		$brojac = $db->execute_select_one('SELECT COUNT(*) as broj FROM products as p WHERE p.brand_id = ?', [$_GET['b']]);
+	}else{
+		$brojac = $db->execute_select_one('SELECT COUNT(*) as broj FROM products');
+	}
 	// $brojac = count($products);
 	// var_dump($brojac);
 	
@@ -24,6 +28,18 @@
 			}
 		}
 	}
+	if (isset($_GET['b'])) {
+		$x = $_GET['b'];
+		$brand = null;
+		$c_id = null;
+		foreach ($brands as $b) {
+			$brand = $b->id == $_GET['b'] ? $b->name : null;
+			if($brand){
+				$c_id = $b->id;
+				break;
+			}
+		}
+	}
 
 	$per_page = 6;
 	$number_of_links = ceil($brojac->broj/$per_page);
@@ -32,6 +48,11 @@
 
 	if(isset($_GET['c'])){
 		$products = $db->execute_param_query('SELECT * FROM products as p WHERE p.category_id = ? LIMIT ' . $from . ', ' . $per_page, [$_GET['c']]);
+	}else{
+		$products = $db->execute_query('SELECT * FROM products LIMIT ' . $from . ', ' . $per_page);
+	}
+	if(isset($_GET['b'])){
+		$products = $db->execute_param_query('SELECT * FROM products WHERE brand_id = ? LIMIT ' . $from . ', ' . $per_page, [$_GET['b']]);
 	}else{
 		$products = $db->execute_query('SELECT * FROM products LIMIT ' . $from . ', ' . $per_page);
 	}
@@ -53,7 +74,7 @@
 									foreach ($categories as $c):
 								?>
                                     <li>
-                                        <a href="index.php?page=products&c=<?=  $c->id ?>"><?= $c->name ?></a>
+                                        <a href="<?= SELF ?>?page=products&c=<?=  $c->id ?>"><?= $c->name ?></a>
                                     </li>
 								<?php
 									endforeach;
@@ -64,69 +85,26 @@
 
                         <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
                             <div class="l_w_title">
-                                <h3>Product filters</h3>
+                                <h3>Browse Brands</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <p>Brands</p>
                                     <?php 
 									foreach ($brands as $b):
 								?>
                                     <li>
-                                        <input type="radio" name="rbnBrands" aria-label="Radio button for following text input">
-                                        <a href="#"><?= $b->name ?></a>
+                                        <a href="<?= SELF ?>?page=products&b=<?=  $b->id ?>"><?= $b->name ?></a>
                                     </li>
 								<?php
 									endforeach;
 								?> 
                                 </ul>
                                 <ul class="list">
-                                    <p>color</p>
-                                    <li>
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                        <a href="#">Black</a>
-                                    </li>
-                                    <li>
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                        <a href="#">Black Leather</a>
-                                    </li>
-                                    <li>
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                        <a href="#">Black with red</a>
-                                    </li>
-                                    <li>
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                        <a href="#">Gold</a>
-                                    </li>
-                                    <li>
-                                        <input type="radio" aria-label="Radio button for following text input">
-                                        <a href="#">Spacegrey</a>
-                                    </li>
+                                    <li><a href="<?= SELF ?>?page=products">Clear filters</a></li>
                                 </ul>
                             </div>
                         </aside>
 
-                        <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                            <div class="l_w_title">
-                                <h3>Price Filter</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <div class="range_item">
-                                    <!-- <div id="slider-range"></div> -->
-                                    <input type="text" class="js-range-slider" value="" />
-                                    <div class="d-flex align-items-center">
-                                        <div class="price_text">
-                                            <p>Price :</p>
-                                        </div>
-                                        <div class="price_value d-flex justify-content-center">
-                                            <input type="text" class="js-input-from" id="amount" readonly />
-                                            <span>to</span>
-                                            <!-- <input type="text" class="js-input-to" id="amount" readonly /> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -137,13 +115,15 @@
 									<h2><?php 
 											if (isset($category)) {
 												echo $category;
+											}else if(isset($brand)){
+												echo $brand;
 											}else{
 												echo "Products";
 											}
 										?>
-									(<?= count($products) ?>)</h2>
+									(<?= $brojac->broj ?>)</h2>
                                 </div>
-                                <div class="product_top_bar_iner product_bar_item d-flex">
+                                <!-- <div class="product_top_bar_iner product_bar_item d-flex">
                                     <div class="product_bar_single">
                                         <select class="wide">
                                             <option data-display="Default sorting">Default sorting</option>
@@ -159,7 +139,7 @@
                                             <option value="2">Show 30</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 						<?php

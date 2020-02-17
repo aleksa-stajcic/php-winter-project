@@ -30,6 +30,9 @@ if (isset($_GET['page'])) {
 		case 'author':
 			include "app/views/pages/author.php";
 		break;
+		case 'not-found':
+			include "app/views/pages/not_found.php";
+		break;
 		default:
 			include "app/views/pages/not_found.php";
 	}

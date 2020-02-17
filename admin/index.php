@@ -5,11 +5,13 @@ session_start();
 require_once "../app/config/database.php";
 
 if(!isset($_SESSION['user'])){
-    header("Location: " . SELF);
+    http_response_code(404);
+    header("Location: " . NOT_FOUND);
 }
 
 if($_SESSION['user']->role != 'admin'){
-    header("Location: " . SELF);
+    http_response_code(404);
+    header("Location: " . NOT_FOUND);
 }
 
 include "views/header.php";

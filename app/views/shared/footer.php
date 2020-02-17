@@ -4,12 +4,15 @@
             <div class="row justify-content-between">
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
+					
                         <h4>Category</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#">Male</a></li>
-                            <li><a href="#">Female</a></li>
-                            <li><a href="#">Shoes</a></li>
-                            <li><a href="#">Fashion</a></li>
+						<?php 
+							$cats = $db->execute_query("SELECT * FROM categories");
+							foreach ($cats as $c):
+						?>
+                            <li><a href="<?= SELF ?>/?page=products&c=<?= $c->id ?>"><?= $c->name ?></a></li>
+						<?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +104,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="app/assets/js/__winter.js"></script>
-	<script src="js/user_actions.js"></script>
 </body>
 
 </html>
