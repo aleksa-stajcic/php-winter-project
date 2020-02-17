@@ -1,9 +1,7 @@
 <?php
 
 require_once "app/config/database.php";
-
 require_once "app/Models/DB.php";
-
 $db = new DB();
 
 $page = '';

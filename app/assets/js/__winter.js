@@ -1,3 +1,5 @@
+const URL = 'http://localhost/php-winter-project';
+
 $(document).ready(function () {
 	// alert('TU');
 
@@ -10,7 +12,7 @@ $(document).ready(function () {
 		}
 
 		$.ajax({
-			url: 'http://localhost/winter-php2/register?r=1',
+			url: URL + '/app/modules/register.php',
 			method: 'post',
 			data: formData,
 			success: function (data, xhr) {
