@@ -25,7 +25,7 @@
                 <td><?= $p->man_name ?></td>
                 <td><?= $p->descr ?></td>
                 <td><?= $p->price ?></td>
-                <td><img src="../app/assets/<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width="100%"></td>
+                <td><img height="300px" src="../app/assets/<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width=""></td>
                 <td><?= $p->cat_name ?></td>
                 <td><a href="#" class="btn btn-xs btn-danger delete-product" data-id="<?= $p->id ?>">Delete</a></td>
             </tr>

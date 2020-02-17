@@ -29,6 +29,7 @@
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="../app/assets/js/__winter.js"></script>
+	<script src="js/user_actions.js"></script>
 </body>
 
 </html>

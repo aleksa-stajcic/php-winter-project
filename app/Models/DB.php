@@ -35,14 +35,21 @@ class DB {
 	{
 		# provera ako vec ima i vracanje koda
 		$prepare = $this->conn->prepare($query);
-		$prepare->execute($info);
-		return $prepare;
+		$rezultat = $prepare->execute($info);
+		return $rezultat;
 	}
 
 	public function execute_update($query, $params)
 	{
 		$prepare = $this->conn->prepare($query);
-		$prepare->execute($params);
-		return $prepare;
+		$rezultat = $prepare->execute($params);
+		return $rezultat;
+	}
+
+	public function execute_delete($query)
+	{
+		$prepare = $this->conn->prepare($query);
+		$rezultat = $prepare->execute($params);
+		return $rezultat;
 	}
 }
