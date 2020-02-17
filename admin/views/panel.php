@@ -4,8 +4,8 @@
     <div class="jumbotron">
       <p>You are looking at the admin panel:</p>
       <ul>
-        <li><a href="<?= SELF ?>/admin/pages/users.php">Manage Users</a></li>
-        <li><a href="pages/products.php">Manage Products</a></li>
+        <li><a href="<?= SELF ?>/admin/users.php">Manage Users</a></li>
+        <li><a href="<?= SELF ?>/admin/products.php">Manage Products</a></li>
       </ul>
     </div>
   </div>

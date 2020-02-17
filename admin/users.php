@@ -1,18 +1,17 @@
 <?php
 
 session_start();
+require_once "../app/config/database.php";
 
 if(!isset($_SESSION['user'])){
-    header("Location: ../index.php");
+    header("Location: " . SELF);
 }
 
 if($_SESSION['user']->role != 'admin'){
-    header("Location: ../index.php");
+    header("Location: " . SELF);
 }
 
-include "../app/config/database.php";
-include "../app/Models/DB.php";
-
+require_once "../app/Models/DB.php";
 $db = new DB();
 
 include "views/header.php";
@@ -26,7 +25,7 @@ switch($page){
         break;
     default:
         $brojac = $db->execute_select_one("SELECT COUNT(*) as broj FROM users");
-        // $obj = $conn->query($query)->fetch();
+
         $per_page = 3;
         $number_of_links = ceil($brojac->broj/$per_page);
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -37,8 +36,7 @@ switch($page){
                     u.username,
                     u.role_id,
                     u.token,
-					r.name FROM users u INNER JOIN roles r ON u.role_id = r.id LIMIT $from, $per_page;";
-					
+					r.name FROM users u INNER JOIN roles r ON u.role_id = r.id LIMIT $from, $per_page;";	
         $users = $db->execute_query($query);
         include "views/users/index.php";
 }

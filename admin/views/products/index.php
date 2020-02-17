@@ -25,7 +25,7 @@
                 <td><?= $p->man_name ?></td>
                 <td><?= $p->descr ?></td>
                 <td><?= $p->price ?></td>
-                <td><img src="../<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width="100%"></td>
+                <td><img src="../app/assets/<?= $p->image ?>" alt="<?= $p->name ?>" class="img-responsive" width="100%"></td>
                 <td><?= $p->cat_name ?></td>
                 <td><a href="#" class="btn btn-xs btn-danger delete-product" data-id="<?= $p->id ?>">Delete</a></td>
             </tr>
@@ -34,7 +34,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                <a class="page-link" href="users.php" aria-label="Previous">
+                <a class="page-link" href="products.php?page=<?= isset($_GET['c']) ? "&c=". $c_id : "" ?>&number=<?= $number-1 == 0 ? 1 : $number-1  ?>" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
                 </li>
