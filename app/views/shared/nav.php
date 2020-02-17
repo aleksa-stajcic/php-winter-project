@@ -14,55 +14,41 @@
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>">Home</a>
+                                    <a class="nav-link" href="http://localhost/php-winter-project">Home</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= SELF ?>?page=products"> shop</a>
+                                </li>
+								<?php if(isset($_SESSION['user']) && $_SESSION['user']->role == "admin"): ?>
+								<li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop
+                                        admin pages
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="<?= SELF ?>?page=products"> shop category</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-                                        
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="<?= SELF ?>/admin/products.php">manage products</a>
+                                        <a class="dropdown-item" href="<?= SELF ?>/admin/users.php">manage users</a>
                                     </div>
                                 </li>
+								<?php endif; ?>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
+                                        account <?= isset($_SESSION['user']) ? '(' . $_SESSION['user']->username .')' : "" ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 									<?php if(!isset($_SESSION['user'])): ?>
-                                        <a class="dropdown-item" href="<?= SELF ?>/login.php">login</a>
-                                        <a class="dropdown-item" href="<?= SELF ?>?page=register">Register</a>
-									<?php endif; ?>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
-                                </li>
-                                
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    </div>
+                                        <a class="dropdown-item" href="http://localhost/php-winter-project/login.php">login</a>
+                                        <a class="dropdown-item" href="http://localhost/php-winter-project?page=register">Register</a>
+									<?php else: ?>
+										<a class="dropdown-item" href="http://localhost/php-winter-project/logout.php">Logout </a>
+                                    <?php endif; ?>
+									</div>
                                 </li>
                                 
                                 <li class="nav-item">
                                     <a class="nav-link" href="?page=author">Author</a>
                                 </li>
-								<?php if(isset($_SESSION['user'])): ?>
-								<li class="nav-item">
-                                    <a class="nav-link" href="<?= SELF ?>/logout.php">Logout (<?= $_SESSION['user']->username ?>)</a>
-                                </li>
-								<?php endif; ?>
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
