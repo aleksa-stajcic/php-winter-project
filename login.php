@@ -25,7 +25,7 @@ if (isset($_SESSION['user'])) {
 			$_SESSION['user'] = $user;
 			var_dump($user);
 			// if($user->role == 'admin'){
-                    header("Location: http://localhost/php-winter-project/app/admin/index.php");
+                    header("Location: http://localhost/php-winter-project/admin/index.php");
             //     }else{
             //         header("Location: " . SELF);
             //     }

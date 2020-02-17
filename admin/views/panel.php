@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container typography">
   <h1 class="mt-4 mb-3">Admin Panel</h1>
   <div id="larry">
     <div class="jumbotron">

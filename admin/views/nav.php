@@ -4,7 +4,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-11">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="<?= SELF ?>" > <img src="../assets/img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="<?= SELF ?>" > <img src="../app/assets/img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
